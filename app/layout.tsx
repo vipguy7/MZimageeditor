@@ -1,22 +1,14 @@
-import type React from "react"
-import type { Metadata } from "next"
-import "./globals.css"
-import "./fonts.css"
+// ...your imports
 
-export const metadata: Metadata = {
-  title: "YouTube Thumbnail Editor",
-  description: "Create and customize YouTube thumbnails with ease",
-  generator: "v0.dev",
-}
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <footer className="w-full text-center text-xs text-gray-500 py-2 border-t mt-6">
+          Internel usage only. Copyright@Mizzima2025
+        </footer>
+      </body>
     </html>
-  )
+  );
 }
