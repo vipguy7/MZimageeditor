@@ -11,8 +11,15 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-// ... (all your state and handlers remain the same)
+const [cropSize, setCropSize] = useState<{ w: number, h: number } | null>(null);
 
+const cropSizes = [
+  { label: "1920 x 1080", w: 1920, h: 1080 },
+  { label: "1500 x 1500", w: 1500, h: 1500 },
+  { label: "1200 x 1500", w: 1200, h: 1500 },
+  { label: "1500 x 1200", w: 1500, h: 1200 }
+];
+// ... (all your state and handlers remain the same)
 export default function PhotoEditor() {
   // ... all your state & handlers
 
