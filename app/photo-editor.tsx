@@ -15,7 +15,15 @@ import { Label } from "@/components/ui/label";
 
 export default function PhotoEditor() {
   // ... all your state & handlers
-
+const handleDownload = () => {
+  if (canvasRef.current) {
+    const url = canvasRef.current.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "edited-image.png";
+    link.click();
+  }
+};
   return (
     <div className="min-h-screen bg-gradient-to-tr from-blue-50 to-purple-100 py-10">
       <div className="max-w-5xl mx-auto flex flex-col lg:flex-row gap-8 px-4">
