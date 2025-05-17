@@ -12,7 +12,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 // ... (all your state and handlers remain the same)
+const [cropSize, setCropSize] = useState<{ w: number, h: number } | null>(null);
 
+const cropSizes = [
+  { label: "1920 x 1080", w: 1920, h: 1080 },
+  { label: "1500 x 1500", w: 1500, h: 1500 },
+  { label: "1200 x 1500", w: 1200, h: 1500 },
+  { label: "1500 x 1200", w: 1500, h: 1200 }
+];
 export default function PhotoEditor() {
   // ... all your state & handlers
 
@@ -43,9 +50,30 @@ export default function PhotoEditor() {
           />
         </div>
         {/* Controls Panel */}
+        
         <aside className="w-full lg:w-1/3">
           <div className="sticky top-8 bg-white/90 rounded-xl shadow-lg p-6 flex flex-col gap-6 max-h-[80vh] overflow-y-auto">
             {/* Title */}
+            <div>
+              <Label>Crop Image Size</Label>
+              <Select
+                value={cropSize ? `${cropSize.w} x ${cropSize.h}` : ""}
+                onValueChange={val => {
+                const found = cropSizes.find(cs => cs.label === val);
+                setCropSize(found ? { w: found.w, h: found.h } : null);
+              }}>
+    <SelectTrigger>
+      <SelectValue placeholder="Select crop size" />
+    </SelectTrigger>
+    <SelectContent>
+      {cropSizes.map(cs => (
+        <SelectItem key={cs.label} value={cs.label}>
+          {cs.label}
+        </SelectItem>
+      ))}
+    </SelectContent>
+  </Select>
+</div>
             <div>
               <Label>Title</Label>
               <Input value={title} onChange={e => setTitle(e.target.value)} className="mb-2" />
